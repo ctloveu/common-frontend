@@ -2,9 +2,9 @@
  * @file  用于格式表格值的 formatter
  */
 
-import  { get, map } from 'lodash'
-import formatDate from 'library/functions/formatDate'
-import divide from 'library/functions/divide'
+import { get, map } from 'lodash'
+// import formatDate from 'library/functions/formatDate'
+// import divide from 'library/functions/divide'
 
 const EMPTY_PLACEHOLDER = '--'
 
@@ -66,27 +66,27 @@ const addressArrayFormatter = (value) => {
 /**
  * 格式化小数
  */
-const unitFormatter = (value, n = 4) => {
-    return divide(value, Math.pow(10, n))
-}
+// const unitFormatter = (value, n = 4) => {
+//     return divide(value, Math.pow(10, n))
+// }
 
 /**
  * 格式化分钟到小时
  */
-const unitTimeFormatter = (value) => {
-    return parseFloat(divide(value, 60)).toFixed(2)
-}
+// const unitTimeFormatter = (value) => {
+//     return parseFloat(divide(value, 60)).toFixed(2)
+// }
 
 /**
  * 数组转化成字符串
  */
-const toString = (value, sperator = '/') => {
-    if (value && value.length) {
-        return value.join(sperator)
-    } else {
-        return EMPTY_PLACEHOLDER
-    }
-}
+// const toString = (value, sperator = '/') => {
+//     if (value && value.length) {
+//         return value.join(sperator)
+//     } else {
+//         return EMPTY_PLACEHOLDER
+//     }
+// }
 
 /**
  * 上个月一号时间戳
@@ -112,21 +112,21 @@ const presentMonth = () => {
 /**
  * 数组数值filter
  */
-const arrayFilter = (value, key) => {
-    if (value && value.length) {
-        let res = []
-        value.forEach((val) => {
-            if (val) {
-                res.push(parseFloat(divide(val, key)).toFixed(2))
-            } else {
-                res.push(null)
-            }
-        })
-        return res.join('/')
-    }
-    return null
+// const arrayFilter = (value, key) => {
+//     if (value && value.length) {
+//         let res = []
+//         value.forEach((val) => {
+//             if (val) {
+//                 res.push(parseFloat(divide(val, key)).toFixed(2))
+//             } else {
+//                 res.push(null)
+//             }
+//         })
+//         return res.join('/')
+//     }
+//     return null
 
-}
+// }
 
 /**
  * 格式化分钟至小时分钟
@@ -233,12 +233,12 @@ export {
     addressFormatter,
     addressArrayFormatter,
     validFormatter,
-    unitFormatter,
-    unitTimeFormatter,
-    toString,
+    // unitFormatter,
+    // unitTimeFormatter,
+    // toString,
     previousMonth,
     presentMonth,
-    arrayFilter,
+    // arrayFilter,
     prettyTimeFormatter,
     floatNumberMultiply,
     floatNumberDiv,
