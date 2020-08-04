@@ -1,5 +1,5 @@
 /**
- * @file 公共库directives出口文件
+ * @file 公共库mixins出口文件
  * @author 陈涛
  */
 
