@@ -7,6 +7,7 @@
  */
 
 // 初级防抖
+// 缺点： 没有处理fn返回值
 export function simpleDebounce(fn, ms = 500) {
     let timer
     return function(...args) {
@@ -30,7 +31,7 @@ export default function debounce(fn, timeout = 1000) {
         }
         return new Promise((resolve, reject) => {
             try {
-                timer = setTimeout(async () => {
+                timer = setTimeout(async() => {
                     resolve(await fn.apply(this, args))
                 }, timeout)
             } catch (error) {
