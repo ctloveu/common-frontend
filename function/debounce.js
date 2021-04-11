@@ -5,7 +5,9 @@
  * @param {Function} fn
  * @param {Number} ms
  */
-export default function debounce(fn, ms = 500) {
+
+// 初级防抖
+export function simpleDebounce(fn, ms = 500) {
     let timer
     return function(...args) {
         if (timer) {
@@ -15,4 +17,39 @@ export default function debounce(fn, ms = 500) {
             fn.apply(this, args)
         }, ms)
     }
+}
+
+export default function debounce(fn, timeout = 1000) {
+    let timer = null
+    let args
+    function main(...arg) {
+        args = arg
+        if (timer) {
+            clearTimeout(timer)
+            timer = cancel()
+        }
+        return new Promise((resolve, reject) => {
+            try {
+                timer = setTimeout(async () => {
+                    resolve(await fn.apply(this, args))
+                }, timeout)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    }
+
+    function cancel() {
+        clearTimeout(timer)
+        timer = null
+    }
+
+    function flush() {
+        cancel()
+        return fn.apply(this, args)
+    }
+
+    main.cancel = cancel
+    main.flush = flush
+    return main
 }
