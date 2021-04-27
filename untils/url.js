@@ -9,25 +9,24 @@
  * @param {string} queryStr 查询字符串，可直接把 location.search 或 location.hash 扔进来解析
  * @return {Object}
  */
-export function parseQuery (queryStr) {
-    let result = { }
+export function parseQuery(queryStr) {
+    const result = { }
 
     if (typeof queryStr === 'string' && queryStr.length > 1) {
 
         let startIndex = 0
         let qs = queryStr
 
-        let firstChar = qs.charAt(0)
+        const firstChar = qs.charAt(0)
 
         // query 如 ?a=1
         if (firstChar === '?') {
             startIndex = 1
-        }
-        // hash 如 #a=1
-        else if (firstChar === '#') {
+        } else if (firstChar === '#') {
+            // hash 如 #a=1
             startIndex = 1
 
-            let secondChar = qs.charAt(1)
+            const secondChar = qs.charAt(1)
             // hash 如 #/a=1&b=2
             if (secondChar === '/') {
                 startIndex = 2
@@ -38,14 +37,13 @@ export function parseQuery (queryStr) {
             qs = queryStr.substr(startIndex)
         }
         qs.split('&').forEach(
-            function (item, index) {
-                let parts = item.split('=')
+            function(item, index) {
+                const parts = item.split('=')
                 if (parts.length === 2) {
                     let key = parts[0].trim()
                     let value = (parts[1].trim()) || ''
 
-                    let specialChar = value.indexOf('#')
-
+                    const specialChar = value.indexOf('#')
 
                     if (key.indexOf('?') > 0) {
                         key = key.split('?')[1]
@@ -70,14 +68,13 @@ export function parseQuery (queryStr) {
  * @param {?string} url
  * @return {string}
  */
-export function getOrigin (url) {
+export function getOrigin(url) {
     let targetUrl = url
     if (!targetUrl) {
         targetUrl = document.URL
     }
 
     return exports.parse(targetUrl).origin
-
 }
 
 /**
@@ -86,30 +83,25 @@ export function getOrigin (url) {
  * @param {string} url
  * @return {Object}
  */
-export function parse (url) {
-
-    let link = document.createElement('a')
+export function parse(url) {
+    const link = document.createElement('a')
     link.href = url
 
     // 用 a 来格式化
-    let targetUrl = link.href
+    const targetUrl = link.href
 
     let origin = ''
 
     if (link.protocol && link.host) {
         origin = link.protocol + '//' + link.host
-    }
-    else if (/^(http[s]?:\/\/[^/]+)(?=\/)/.test(targetUrl)) {
+    } else if (/^(http[s]?:\/\/[^/]+)(?=\/)/.test(targetUrl)) {
         origin = RegExp.$1
     }
 
     // xp 下 http 可能会解析出 80 端口，实际是不需要的
-    let terms = origin.split(':')
+    const terms = origin.split(':')
 
-    if (origin.indexOf('http:') === 0
-        && terms.length === 3
-        && terms[2] == 80
-    ) {
+    if (origin.indexOf('http:') === 0 && terms.length === 3 && terms[2] === 80) {
         terms.length = 2
         origin = terms.join(':')
     }

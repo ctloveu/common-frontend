@@ -1,4 +1,4 @@
-//export function fuName()方式导出 单个文件需统一导出方式
+// export function fuName()方式导出 单个文件需统一导出方式
 
 // import parseTime, formatTime and set to filter
 // export { parseTime, formatTime } from '@/utils'
@@ -64,7 +64,7 @@ export function toThousandFilter(num) {
 
 /**
  * 处理首字母为大写  abc => Abc
- * @param {string} str 
+ * @param {string} str
  * @return {string}
  */
 export function toUpperCaseFirst(str) {
@@ -73,13 +73,13 @@ export function toUpperCaseFirst(str) {
 
 /**
  * 驼峰命名<=中横线命名
- * @param {string} name 
+ * @param {string} name
  * @return {string}
  */
 export function camelCase(name) {
     const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
     const MOZ_HACK_REGEXP = /^moz([A-Z])/;
-    return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
-        return offset ? letter.toUpperCase() : letter;
-    }).replace(MOZ_HACK_REGEXP, 'Moz$1');
+    return name.replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
+        return offset ? letter.toUpperCase() : letter
+    }).replace(MOZ_HACK_REGEXP, 'Moz$1')
 }
